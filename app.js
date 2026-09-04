@@ -1,11 +1,11 @@
-// 表示コンテンツデータ（ここを編集することで内容を簡単に変更できます）
+// 表示コンテンツデータ
 const contentData = {
     title: "スキットルとモルック棒",
     subtitle: "好きぴに贈る、愛の詩。",
     
     sections: {
         hers: {
-            label: "", // 空文字の場合は非表示になります
+            label: "", // 不要な場合は空文字
             text: `あなたの雄々しいその横顔が
 モルックを投げるモーションが
 私の世界に光を照らしてくれました。
@@ -21,7 +21,7 @@ const contentData = {
 あなたは私のモルック棒。
 
 倒れた私を立ち上がらせて。
-手そしてあなたで私を倒して。
+そしてあなたで私を倒して。
 あなたと私はふたつでひとつ。
 あなたがいないと私は存在意義がない、ただの木偶の坊。
 
@@ -31,31 +31,6 @@ const contentData = {
 
 あなたは私の片割れ。
 私はあなたの片割れです。`
-        },
-        his: {
-            label: "🔥 返歌：支配と執着",
-            text: `俺はお前のモルック棒。
-お前は立ち上がらなくていい。
-どれだけ立ち上がろうとも、
-俺がお前を倒してやる。
-何度も、どこでも、いつまでも。
-
-お前は俺のスキットル。
-俺はお前をスキッて言っトル。
-もし俺以外に倒されたら
-木くずになるまで壊してやる。`
-        },
-        fusion: {
-            label: "⭐ 再返歌：融和",
-            text: `私はあなたのスキットル
-倒されるのも壊されるのも
-私は喜んで受け入れます
-
-なぜなら私はスキットル
-スキッて気持ちが溢れトル
-あなたの投擲受け止める
-削れ、欠け、木くずとなって交ざり合い
-互いの境を梳かすまで`
         }
     },
     
@@ -68,23 +43,28 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("main-title").textContent = contentData.title;
     document.getElementById("main-subtitle").textContent = contentData.subtitle;
 
-    // 各セクションの設定
-    Object.keys(contentData.sections).forEach(key => {
-        const section = contentData.sections[key];
-        const labelEl = document.getElementById(`${key}-label`);
-        const contentEl = document.getElementById(`${key}-content`);
+    const mainEl = document.querySelector("main");
+    mainEl.innerHTML = ""; // 初期要素をクリア
 
-        if (labelEl) {
-            if (section.label) {
-                labelEl.textContent = section.label;
-            } else {
-                labelEl.style.display = "none";
-            }
-        }
+    // 定義されているセクションのみ動的に生成・表示
+    Object.keys(contentData.sections).forEach(key => {
+        const sectionData = contentData.sections[key];
         
-        if (contentEl) {
-            contentEl.textContent = section.text;
+        const section = document.createElement("section");
+        section.className = key;
+
+        if (sectionData.label) {
+            const label = document.createElement("div");
+            label.className = "label";
+            label.textContent = sectionData.label;
+            section.appendChild(label);
         }
+
+        const p = document.createElement("p");
+        p.textContent = sectionData.text;
+        section.appendChild(p);
+
+        mainEl.appendChild(section);
     });
 
     document.getElementById("footer-text").textContent = contentData.footer;
