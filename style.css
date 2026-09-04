@@ -1,0 +1,85 @@
+:root {
+    --bg-base: #0a0807;
+    --gold: #c9a24b;
+    --red: #9e2b25;
+    --text-main: #e8e4df;
+    --text-muted: #8c8885;
+}
+
+body {
+    background-color: var(--bg-base);
+    color: var(--text-main);
+    font-family: 'Shippori Mincho', serif;
+    line-height: 1.8;
+    margin: 0;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.date {
+    font-size: 1rem;
+    color: var(--gold);
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    color: #fff;
+    font-size: 2rem;
+    letter-spacing: 3px;
+    margin: 0 0 12px 0;
+    font-weight: 600;
+}
+
+.subtitle {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+main {
+    width: 100%;
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+}
+
+section .label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+}
+
+section.hers .label { color: var(--gold); }
+section.his .label { color: var(--red); }
+section.fusion .label {
+    background: linear-gradient(90deg, var(--gold), var(--red));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+p {
+    margin: 0 0 20px 0;
+    white-space: pre-wrap;
+    font-size: 0.98rem;
+    letter-spacing: 0.5px;
+}
+p:last-child { margin-bottom: 0; }
+
+footer {
+    margin-top: 70px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: center;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+}
