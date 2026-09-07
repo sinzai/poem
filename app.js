@@ -60,9 +60,13 @@ document.addEventListener("DOMContentLoaded", () => {
             section.appendChild(label);
         }
 
-        const p = document.createElement("p");
-        p.textContent = sectionData.text;
-        section.appendChild(p);
+        // 空行（改行2つ）で区切って複数の p タグとして生成
+        const paragraphs = sectionData.text.split(/\n\s*\n/);
+        paragraphs.forEach(paraText => {
+            const p = document.createElement("p");
+            p.textContent = paraText.trim();
+            section.appendChild(p);
+        });
 
         mainEl.appendChild(section);
     });
