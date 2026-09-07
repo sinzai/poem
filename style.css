@@ -1,7 +1,6 @@
 :root {
     --bg-base: #0a0807;
     --gold: #c9a24b;
-    --red: #9e2b25;
     --text-main: #e8e4df;
     --text-muted: #8c8885;
 }
@@ -57,18 +56,11 @@ section .label {
     font-weight: 600;
     letter-spacing: 1px;
     margin-bottom: 18px;
-}
-
-section.hers .label { color: var(--gold); }
-section.his .label { color: var(--red); }
-section.fusion .label {
-    background: linear-gradient(90deg, var(--gold), var(--red));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--gold);
 }
 
 p {
-    margin: 0 0 20px 0;
+    margin: 0 0 28px 0;
     white-space: pre-wrap;
     font-size: 0.98rem;
     letter-spacing: 0.5px;
