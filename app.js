@@ -46,6 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const mainEl = document.querySelector("main");
     mainEl.innerHTML = ""; // 初期要素をクリア
 
+    const allParagraphs = [];
+
     // 定義されているセクションのみ動的に生成・表示
     Object.keys(contentData.sections).forEach(key => {
         const sectionData = contentData.sections[key];
@@ -66,10 +68,25 @@ document.addEventListener("DOMContentLoaded", () => {
             const p = document.createElement("p");
             p.textContent = paraText.trim();
             section.appendChild(p);
+            allParagraphs.push(p);
         });
 
         mainEl.appendChild(section);
     });
 
     document.getElementById("footer-text").textContent = contentData.footer;
+
+    // スクロールに合わせて段落を一つずつフェード＋スライドインで表示
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const index = allParagraphs.indexOf(entry.target);
+                entry.target.style.transitionDelay = `${(index % 4) * 0.15}s`;
+                entry.target.classList.add("visible");
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    allParagraphs.forEach(p => observer.observe(p));
 });
